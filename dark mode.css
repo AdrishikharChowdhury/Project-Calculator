@@ -1,0 +1,35 @@
+.dark-mode{
+    background-color: #434542;
+}
+
+.dark-mode #toggle{
+    background-color: #7D7E7C;
+    border: 0.1rem solid #FFE437;
+}
+
+.dark-mode main{
+    background-color: #43402E;
+}
+
+.dark-mode .ansscreen{
+    background-color: #7D7E7C;
+    border: 0.2rem solid #FFE437;
+    color: white;
+}
+
+.dark-mode .keypad{
+    background-color: #2B2C27;
+    border: 0.2rem solid #FFE437;
+}
+
+.dark-mode .key1{
+    background-color: #3E230F;
+}
+
+.dark-mode .key2{
+    background-color: #151128;
+}
+
+.dark-mode button:hover{
+    border: 0.2rem solid #FFE437;
+}
