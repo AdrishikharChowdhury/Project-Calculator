@@ -55,38 +55,41 @@ buttons.forEach((buttonId)=>{
                 }
             })
             break;
-        case "plus":
-        case "minus":
-        case "multi":
-        case "divide":
-            button.addEventListener("click",()=>{
-                if (!firstVal && display.innerText === "0") {
-                    firstVal="0";
-                }
-                if (firstVal && operator && display.innerText !== operator) {
-                    secondVal = display.innerText;
-                    if (secondVal === "-") {
-                        return;
+            case "plus":
+            case "minus":
+            case "multi":
+            case "divide":
+                button.addEventListener("click", () => {
+                    if (!firstVal && display.innerText === "0") {
+                        if (buttonId === "minus") {  
+                            display.innerText = "-";
+                            return;
+                        } else {
+                            return;
+                        }
                     }
-                    firstVal = result(firstVal, secondVal, operator);
-                    display.innerText = firstVal;
-                    operator = "";
-                }
-                if (operator!="–" && display.innerText === operator) {
-                    if (buttonId === "minus" && display.innerText !== "-") {
-                        display.innerText = "-";
-                        return;
-                    } else {
-                        return;
+                    if (firstVal && operator && display.innerText === operator) {
+                        if (buttonId === "minus") {
+                            display.innerText = "-";
+                            return;
+                        } else {
+                            return;
+                        }
                     }
-                }
-                firstVal=display.innerText;
-                console.log(firstVal);
-                isPoint = false;
-                operator=operatorStore(buttonId);
-                display.innerText=button.innerText;
-            });
-            break;
+                    if (firstVal && operator && display.innerText !== operator) {
+                        secondVal = display.innerText;
+                        if (secondVal === "-") return;  
+                        firstVal = result(firstVal, secondVal, operator);
+                        display.innerText = firstVal;  // ✅ Maintain correct values
+                        operator = "";
+                    }
+                    firstVal = display.innerText;
+                    isPoint = false;
+                    operator = operatorStore(buttonId);
+                    display.innerText = button.innerText;
+                });
+                break;
+                      
         case "equal":
             button.addEventListener("click",()=>{
                 if (!firstVal || !operator || display.innerText === operator) return;
@@ -124,7 +127,7 @@ const operatorStore=(operator)=>{
         case "plus":
             return "+";
         case "minus":
-            return "–"
+            return "-"
         case "multi":
             return "×";
         case "divide":
@@ -143,7 +146,7 @@ const result=(firstVal,secondVal,operator)=>{
         case "+":
             ans=firstVal+secondVal;
             break;
-        case "–":
+        case "-":
             ans=firstVal-secondVal;
             break;
         case "×":
