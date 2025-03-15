@@ -61,13 +61,24 @@ buttons.forEach((buttonId)=>{
         case "divide":
             button.addEventListener("click",()=>{
                 if (!firstVal && display.innerText === "0") {
-                    display.innerText = "-";
-                    return;
+                    firstVal="0";
                 }
                 if (firstVal && operator && display.innerText !== operator) {
                     secondVal = display.innerText;
-                    firstVal = result(firstVal, secondVal, operator); // ✅ Execute previous operation
+                    if (secondVal === "-") {
+                        return;
+                    }
+                    firstVal = result(firstVal, secondVal, operator);
                     display.innerText = firstVal;
+                    operator = "";
+                }
+                if (operator!="–" && display.innerText === operator) {
+                    if (buttonId === "minus" && display.innerText !== "-") {
+                        display.innerText = "-";
+                        return;
+                    } else {
+                        return;
+                    }
                 }
                 firstVal=display.innerText;
                 console.log(firstVal);
@@ -126,7 +137,7 @@ const operatorStore=(operator)=>{
 const result=(firstVal,secondVal,operator)=>{
     let ans;
     firstVal=parseFloat(firstVal);
-    secondVal=parseFloat(secondVal);
+    secondVal = parseFloat(secondVal);;
     switch(operator)
     {
         case "+":
