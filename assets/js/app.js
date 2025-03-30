@@ -172,3 +172,9 @@ const result=(firstVal,secondVal,operator)=>{
     }
     return ans.toString();
 };
+
+if (window.location.hostname === "adrishikharchowdhury.github.io") {
+    const baseTag = document.createElement("base");
+    baseTag.href = "/Project-Calculator/";
+    document.head.appendChild(baseTag);
+}
