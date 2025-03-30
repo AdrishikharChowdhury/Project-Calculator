@@ -173,13 +173,8 @@ const result=(firstVal,secondVal,operator)=>{
     return ans.toString();
 };
 
-console.log("app.js is running!");
-
 if (window.location.hostname === "adrishikharchowdhury.github.io") {
-    console.log("Setting <base> tag for GitHub Pages"); // Debugging
     const baseTag = document.createElement("base");
     baseTag.href = "/Project-Calculator/";
-    document.head.insertBefore(baseTag, document.head.firstChild);
-} else {
-    console.log("Running locally, no <base> tag needed.");
+    document.head.appendChild(baseTag);
 }
